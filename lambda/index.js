@@ -1,8 +1,7 @@
 const { parseCurrentPrice } = require("./parseCurrentPrice");
 const { savePriceToDB } = require("./savePriceToDB");
 
-async function handler(event) {
-  const { id, source } = event;
+async function handler({ id, source }) {
   try {
     const currentPrice = await parseCurrentPrice();
     await savePriceToDB({
