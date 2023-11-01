@@ -1,0 +1,17 @@
+{
+  "name": "track-btc-price",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lambda/index.js",
+  "scripts": {
+    "package": "rm archive.zip || true && zip -r archive.zip .",
+    "buildLambda": "cd lambda && zip -r lambda.zip .",
+    "buildLayer": "cd nodejs && zip -r nodejs.zip ."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "3.438.0",
+    "jsdom": "22.1.0"
+  }
+}

@@ -1,5 +1,5 @@
-const { parseCurrentPrice } = require("./src/parseCurrentPrice");
-const { savePriceToDB } = require("./src/savePriceToDB");
+const { parseCurrentPrice } = require("./parseCurrentPrice");
+const { savePriceToDB } = require("./savePriceToDB");
 
 async function handler(event) {
   const { id, source } = event;
