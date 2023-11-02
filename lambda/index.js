@@ -1,7 +1,7 @@
-const { parseCurrentPrice } = require("./parseCurrentPrice");
-const { savePriceToDB } = require("./savePriceToDB");
+import { parseCurrentPrice } from "./parseCurrentPrice.js";
+import { savePriceToDB } from "./savePriceToDB.js";
 
-async function handler({ id, source }) {
+export async function handler({ id, source }) {
   try {
     const currentPrice = await parseCurrentPrice();
     await savePriceToDB({
@@ -13,5 +13,3 @@ async function handler({ id, source }) {
     console.error(error);
   }
 }
-
-module.exports = { handler };

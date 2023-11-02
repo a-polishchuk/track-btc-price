@@ -1,12 +1,13 @@
-const { DynamoDBClient, PutItemCommand } = require("@aws-sdk/client-dynamodb");
+import { DynamoDBClient, PutItemCommand } from "@aws-sdk/client-dynamodb";
 
-async function savePriceToDB(event) {
-  const { price, requestId, requestSource } = event;
-  const dbClient = new DynamoDBClient({ region: "eu-north-1" });
+export async function savePriceToDB({ price, requestId, requestSource }) {
+  const dbClient = new DynamoDBClient({
+    region: process.env.AWS_REGION, // this is one of the default env variables
+  });
   const nowDate = new Date();
 
   const command = new PutItemCommand({
-    TableName: "ParsedBitcoinPrices",
+    TableName: process.env.TARGET_TABLE_NAME,
     Item: {
       timestamp: { N: nowDate.getTime().toString() },
       price: { N: price.toString() },
@@ -18,5 +19,3 @@ async function savePriceToDB(event) {
 
   return dbClient.send(command);
 }
-
-module.exports = { savePriceToDB };
